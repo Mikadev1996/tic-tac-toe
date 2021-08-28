@@ -5,6 +5,16 @@ body {
     margin: 0;
 }
 
+button {
+    background: none;
+    color: inherit;
+    border: none;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+}
+
+
 #grid-container {
     padding: 10px;
 
@@ -38,8 +48,8 @@ body {
 }
 
 .box {
+    border-radius: 4px;
     font-size: 70px;
-
     display: flex;
     align-items: center;
     justify-content: center;
@@ -48,6 +58,20 @@ body {
 
 
 }
+
+#end-container {
+    margin-top: 100px;
+    display: flex;
+    justify-content: center;
+}
+
+#end {
+    background: #303134;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    border-radius: 5px;
+    padding: 10px;
+}
+
 .d2{background:LightSalmon;}
 .d3{background:PaleTurquoise;}
 .d4{background:LightPink;}
