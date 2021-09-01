@@ -5,6 +5,25 @@ body {
     margin: 0;
 }
 
+#game {
+    opacity: 0;
+    pointer-events: none;
+}
+
+#start {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#start-option {
+    width: 150px;
+    height: 150px;
+    background: red;
+}
+
+
 button {
     background: none;
     color: inherit;
