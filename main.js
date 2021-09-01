@@ -6,11 +6,23 @@ const Player = (name, shape) => {
     name = "";
 }
 
+
+let winConditions = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [2, 4, 6],
+    [0, 4, 8]
+];
+
 (function inputShape() {
     let gridInputs = [
-        ["","",""],
-        ["","",""],
-        ["","",""]
+        "","","",
+        "","","",
+        "","",""
     ];
 
     endButton.addEventListener("click", () => {
@@ -21,30 +33,27 @@ const Player = (name, shape) => {
 
     boxes.forEach((box) =>{
         box.addEventListener("click", () => {
+            box.textContent = state ? "X" : "O";
+            state = box.textContent !== "X";
 
-            if (box.classList[1] <= 3) {
-                box.textContent = state ? "X" : "O";
-                gridInputs[0][(box.classList[1] - 1)] = box.textContent;
-                state = box.textContent !== "X";
-            }
-
-            else if (box.classList[1] > 3 && box.classList[1] <= 6) {
-                console.log("2nd row", box.classList[1])
-                box.textContent = state ? "X" : "O";
-                gridInputs[1][(box.classList[1] - 4)] = box.textContent;
-                state = box.textContent !== "X";
-            }
-
-            else if (box.classList[1] > 6) {
-                box.textContent = state ? "X" : "O";
-                gridInputs[2][(box.classList[1] - 7)] = box.textContent;
-                state = box.textContent !== "X";
-            }
-
+            gridInputs[(box.classList[1] - 1)] = box.textContent;
+            gameIsOver(gridInputs, box.textContent);
         })
     })
+
+
 })();
 
-function gameIsOver(array) {
-    console.log(array)
+function gameIsOver(arr, shape) {
+    winConditions.forEach((set) => {
+        if (arr[set[0]] === shape && arr[set[1]] === shape && arr[set[2]] === shape) {
+            alert(`Congratulations ${shape} has won!`)
+        }
+    })
+
 }
+
+
+
+
+
