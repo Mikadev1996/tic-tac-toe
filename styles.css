@@ -17,10 +17,16 @@ body {
     align-items: center;
 }
 
-#start-option {
+.start-option {
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    border-radius: 8px;
+
+    padding: 10px;
+    margin: 25px;
+    background: #303134;
     width: 150px;
     height: 150px;
-    background: red;
+
 }
 
 
@@ -51,7 +57,6 @@ button {
 
 
 #grid {
-
     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
     padding: 25px;
     margin-top: 250px;

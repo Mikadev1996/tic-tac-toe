@@ -13,7 +13,11 @@ console.log(player1, player2);
 
 
 
-(function inputShape() {
+(function startGame() {
+    const startMenu = document.querySelector("#start");
+    const coOp = document.querySelector("#co-op")
+
+
     let gridInputs = [
         "","","",
         "","","",
@@ -65,7 +69,6 @@ console.log(player1, player2);
                 boxes.forEach((box) => {
                     box.textContent = "";
                 })
-
             }
         })
 
