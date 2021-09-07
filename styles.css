@@ -11,18 +11,23 @@ body {
 }
 
 #start {
+    background: #202124;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+
 }
 
-#start-option {
-    width: 150px;
-    height: 150px;
-    background: red;
+.start-option {
+    margin: 25px;
+    text-align: center;
+    background: #303134 ;
+    width: 200px;
+    height: 200px;
+    border-radius: 5px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 }
-
 
 button {
     background: none;
@@ -33,53 +38,41 @@ button {
     outline: inherit;
 }
 
-
 #grid-container {
-    padding: 10px;
+    position: fixed; /** ?????????????????? */
+    top: 0;
 
-    width: 100%;
+    padding: 10px;
+    width: 100vw;
+    height: 100vh;
     display: flex;
     justify-content: center;
-    align-content: center;
-
+    align-items: center;
 }
-
-#box {
-    background: red;
-    text-align: center;
-}
-
 
 #grid {
 
-    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-    padding: 25px;
-    margin-top: 250px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
     background: #303134;
     border-radius: 10px;
-
-
+    padding: 15px;
     display: grid;
-    grid-gap: 10px;
+    grid-gap: 5px;
     grid-template-columns: 100px 100px 100px;
     grid-template-rows: 100px 100px 100px ;
-
 }
 
 .box {
-    border-radius: 4px;
-    font-size: 70px;
     display: flex;
     align-items: center;
+    text-align: center;
+    border-radius: 4px;
+    font-size: 70px;
     justify-content: center;
     background: lightcoral;
-
-
-
 }
 
 #end-container {
-    margin-top: 100px;
     display: flex;
     justify-content: center;
 }
@@ -90,8 +83,3 @@ button {
     border-radius: 5px;
     padding: 10px;
 }
-
-.d2{background:LightSalmon;}
-.d3{background:PaleTurquoise;}
-.d4{background:LightPink;}
-.d5{background:PaleGreen;}

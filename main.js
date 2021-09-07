@@ -2,18 +2,30 @@
 
 
 
-const testPlayer = (name, shape) => {
-    return {name, shape}
-}
+(function startGame() {
 
-const player1 = testPlayer("Mika", "X");
-const player2 = testPlayer("Dev", "O");
+    const startMenu = document.querySelector("#start");
+    const co_op = document.querySelector("#co-op");
+    const gameMenu = document.querySelector("#game");
 
-console.log(player1, player2);
+    co_op.addEventListener("click", () => {
+        startMenu.style.opacity = "0";
+        startMenu.style.pointerEvents = "none";
+
+        gameMenu.style.pointerEvents = "all";
+        gameMenu.style.opacity = "1";
+
+    })
+
+    const testPlayer = (name, shape) => {
+        return {name, shape}
+    }
+    const player1 = testPlayer("Mika", "X");
+    const player2 = testPlayer("Dev", "O");
+    console.log(player1, player2);
 
 
 
-(function inputShape() {
     let gridInputs = [
         "","","",
         "","","",
@@ -21,13 +33,7 @@ console.log(player1, player2);
     ];
 
 
-    const endButton = document.getElementById("end");
-    endButton.addEventListener("click", () => {
-        gameIsOver(gridInputs);
-    });
-
     let state = true;
-
     const boxes = Array.from(document.querySelectorAll(".box"));
     boxes.forEach((box) =>{
         box.addEventListener("click", () => {
