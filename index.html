@@ -6,40 +6,103 @@
     <link rel="stylesheet" href="styles.css"/>
 </head>
 <body>
-    <nav>
-
-    </nav>
+<nav>
+    <div>
+        <h1>Tic-Tac-Toe</h1>
+    </div>
+</nav>
     <main>
         <div id="start">
-            <div id="co-op">
-                <p class="start-option">Hello 1</p>
-            </div>
-            <div id="computer">
-                <p class="start-option">Hello 2</p>
+
+                <div id="local">
+                    <p class="start-option"><strong>Player vs Player</strong></p>
+                </div>
+
+                <div id="computer">
+                    <p class="start-option"><strong>Player vs AI</strong></p>
+                </div>
+
+
+                    <div class="dropdown" id="dropdown-1">
+                        <div class="choose-name">
+                            <p>Player 1 Name:</p>
+                            <input class="inputs" type="text" id="player1-name" >
+                        </div>
+
+                        <div class="choose-name">
+                            <p>Player 2 Name:</p>
+                            <input class="inputs" type="text" id="player2-name" >
+                        </div>
+
+                        <div class="dropdown-action">
+                            <button class="cancel">Cancel</button>
+                            <button class="confirm">Confirm</button>
+                        </div>
+                    </div>
+
+                    <div class="dropdown" id="dropdown-2">
+                        <div class="choose-name">
+                            <p>Player 1 Name:</p>
+                            <input class="inputs" type="text" id="player-name" >
+                        </div>
+
+
+                        <div class="dropdown-action">
+                            <button id="cancel">Cancel</button>
+                            <button id="confirm">Confirm</button>
+                        </div>
             </div>
         </div>
 
         <div id="game">
             <div id="grid-container">
-                <div id="grid">
-                    <div class="box 1"></div>
-                    <div class="box 2"></div>
-                    <div class="box 3"></div>
+                <div id="background">
 
-                    <div class="box 4"></div>
-                    <div class="box 5"></div>
-                    <div class="box 6"></div>
+                    <div class="display">
+                        <div class="game-name" >
+                            <p id="game-p1">Player1</p>
+                            <p id="score-p1">Score: 0</p>
+                        </div>
+                    </div>
 
-                    <div class="box 7"></div>
-                    <div class="box 8"></div>
-                    <div class="box 9"></div>
+
+                    <div id="grid">
+                        <div class="box 1"></div>
+                        <div class="box 2"></div>
+                        <div class="box 3"></div>
+
+                        <div class="box 4"></div>
+                        <div class="box 5"></div>
+                        <div class="box 6"></div>
+
+                        <div class="box 7"></div>
+                        <div class="box 8"></div>
+                        <div class="box 9"></div>
+                    </div>
+
+                    <div class="display">
+                        <div class="game-name">
+                            <p id="game-p2">Player2</p>
+                            <p id="score-p2">Score: 0</p>
+                        </div>
+                    </div>
                 </div>
+
             </div>
+
+            <div class="menu">
+                <button id="menu-button">Main Menu</button>
+            </div>
+
         </div>
     </main>
-    <footer>
 
+    <footer>
+        <div id="footer-text">
+            <p> <a href="https://github.com/Mikadev1996" target="_blank">Mika.Dev // Git hub</a></p>
+        </div>
     </footer>
+
 <script src="main.js"></script>
 </body>
 </html>

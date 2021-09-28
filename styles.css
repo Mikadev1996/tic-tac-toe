@@ -1,3 +1,21 @@
+h1 {
+    font-size: 35px;
+    font-weight: normal;
+    color: #B5EAD7;
+}
+
+nav {
+    position: fixed;
+    top: 0;
+    margin: 15px;
+    height: 65px;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+
 body {
     font-family: sans-serif, "Times New Roman";
     background: #202124;
@@ -5,28 +23,119 @@ body {
     margin: 0;
 }
 
+input {
+    background: none;
+    color: inherit;
+    border: none;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+}
+.inputs {
+    background: white;
+    border-radius: 10px;
+    margin: 5px;
+    padding: 5px;
+}
+
 #game {
     opacity: 0;
+    transition: all 0.4s ease-in;
     pointer-events: none;
 }
 
 #start {
-    background: #202124;
+    left: -25px;
+    position: fixed;
+    transition: all 0.5s ease-in-out;
     height: 100vh;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
 
+#local {
+    background: #E2F0CB;
+}
+#computer {
+    background: #B5EAD7;
 }
 
 .start-option {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin: 25px;
     text-align: center;
-    background: #303134 ;
-    width: 200px;
-    height: 200px;
-    border-radius: 5px;
+    width: 100vw;
+    height: 150px;
+}
+
+
+.dropdown {
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.5s ease-in-out;
+    position: fixed;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    flex-direction: column;
+    justify-content: flex-start;
+    z-index: 10;
     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    background: whitesmoke;
+    border-radius: 10px;
+    padding: 20px;
+    width: 400px;
+    height: 250px;
+}
+
+.dropdown-action {
+    padding: 10px;
+    width: 200px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+
+}
+
+#confirm {
+    height: 50px;
+    border-radius: 10px;
+    margin: 70px 20px;
+    padding: 10px;
+    background: #B5EAD7;
+    font-weight: bold;
+}
+
+
+#cancel {
+    height: 50px;
+    border-radius: 10px;
+    margin: 70px 20px;
+    padding: 5px;
+    background: #FF9AA2;
+    font-weight: bold;
+
+}
+
+.cancel {
+    border-radius: 10px;
+    margin: 20px;
+    padding: 5px;
+    background: #FF9AA2;
+    font-weight: bold;
+}
+
+.confirm {
+    border-radius: 10px;
+    margin: 20px;
+    padding: 10px;
+    background: #B5EAD7;
+    font-weight: bold;
 }
 
 button {
@@ -41,8 +150,8 @@ button {
 #grid-container {
     position: fixed; /** ?????????????????? */
     top: 0;
-
-    padding: 10px;
+    padding: 0;
+    margin: 0;
     width: 100vw;
     height: 100vh;
     display: flex;
@@ -51,10 +160,6 @@ button {
 }
 
 #grid {
-
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-    background: #303134;
-    border-radius: 10px;
     padding: 15px;
     display: grid;
     grid-gap: 5px;
@@ -62,24 +167,82 @@ button {
     grid-template-rows: 100px 100px 100px ;
 }
 
+#background {
+    background:  #DCF5E8;
+    display: flex;
+    justify-content: center;
+    width: 100vw;
+}
+
 .box {
     display: flex;
     align-items: center;
     text-align: center;
+    border: #303134 2px solid;
     border-radius: 4px;
     font-size: 70px;
     justify-content: center;
-    background: lightcoral;
+    background: #B9EAEA;
 }
 
-#end-container {
+.display {
+    text-align: center;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    font-size: 32px;
+    font-weight: bold;
+    font-style: italic;
+    padding: 10px;
+}
+
+.game-name {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.score {
+    font-style: normal;
+    font-size: 18px;
+}
+
+.menu {
+    width: 100vw;
+    height: 85vh;
     display: flex;
     justify-content: center;
+    align-items: end;
+    ;
 }
 
-#end {
-    background: #303134;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+#menu-button {
+    position: fixed;
     border-radius: 5px;
-    padding: 10px;
+    background: #B5EAD7;
+    padding: 15px;
+    margin: 10px;
+}
+
+
+
+
+footer {
+    color: #B5EAD7;
+    position: fixed;
+    bottom: 0;
+    height: 65px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+a {
+    text-decoration: none;
+}
+
+a:visited {
+    color: inherit;
 }
