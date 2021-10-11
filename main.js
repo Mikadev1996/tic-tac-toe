@@ -72,40 +72,7 @@
                     return item === "";
                 })
 
-                if (box.textContent !== "O" && box.textContent !== "X" && draw.length >= 3) {
-                    console.log(draw.length);
-                    box.textContent = "X";
-                    gridInputs[(box.classList[1] - 1)] = box.textContent;
-
-                    let gameOver = isGameOver([player1, player2], gridInputs, box.textContent);
-                    if (gameOver) {
-                        return;
-                    }
-                    let validMoves = generateValidMoves(gridInputs);
-
-                    let index = Math.floor(Math.random() * validMoves.length);
-                    let move = validMoves[index];
-                    if (boxes[move] !== "X") {
-                        console.log(boxes[move])
-                        gridInputs[move] = "O";
-                        boxes[move].textContent = "O"
-
-
-                        if (draw.length === 3) {
-                            console.log("end game")
-                            gridInputs = [
-                                "","","",
-                                "","","",
-                                "","",""
-                            ];
-                            boxes.forEach((box) => {
-                                box.textContent = "";
-                            })
-                        }
-
-
-                        isGameOver([player1, player2], gridInputs, "O");
-                    }
+                if (box.textContent !== "O" && box.textContent !== "X" && draw.length > 1) {
 
                     function generateValidMoves(gridInputs) {
                         let validMoves = [];
@@ -116,6 +83,38 @@
                             }
                         })
                         return validMoves;
+                    }
+                    function test() {
+                        console.log("hello")
+                    }
+
+
+                    box.textContent = "X";
+                    gridInputs[(box.classList[1] - 1)] = box.textContent;
+                    let gameOver = isGameOver([player1, player2], gridInputs, box.textContent);
+                    if (gameOver) {
+                        console.log("test");
+                    } else {
+                        let validMoves = generateValidMoves(gridInputs);
+                        let index = Math.floor(Math.random() * validMoves.length);
+                        let move = validMoves[index];
+                        if (boxes[move] !== "X") {
+                            gridInputs[move] = "O";
+                            boxes[move].textContent = "O"
+
+                            if (draw.length <= 3) {
+                                console.log(draw.length," Draw, endgame")
+                                gridInputs = [
+                                    "","","",
+                                    "","","",
+                                    "","",""
+                                ];
+                                boxes.forEach((box) => {
+                                    box.textContent = "";
+                                })
+                            }
+                            isGameOver([player1, player2], gridInputs, "O");
+                        }
                     }
                 }
             }
@@ -223,15 +222,12 @@
         winConditions.forEach((set) => {
             let gameOver = (arr[set[0]] === shape && arr[set[1]] === shape && arr[set[2]] === shape)
             if (gameOver) {
-                console.log(gameOver)
                 if (shape === "X") {
                     player[0].score += 1;
                     scoreP1.textContent = `Score: ${player[0].score}`;
-
                 } else {
                     player[1].score += 1;
                     scoreP2.textContent = `Score: ${player[1].score}`;
-
                 }
 
                 gridInputs = [
@@ -244,7 +240,7 @@
                     boxes.forEach((box) => {
                         box.textContent = "";
                     })
-                }, 750);
+                }, 0);
 
 
                 return gameOver;
