@@ -84,17 +84,24 @@
                         })
                         return validMoves;
                     }
-                    function test() {
-                        console.log("hello")
-                    }
-
 
                     box.textContent = "X";
                     gridInputs[(box.classList[1] - 1)] = box.textContent;
-                    let gameOver = isGameOver([player1, player2], gridInputs, box.textContent);
-                    if (gameOver) {
-                        console.log("test");
-                    } else {
+                    isGameOver([player1, player2], gridInputs, box.textContent);
+
+                    let test = gridInputs.filter(item => {
+                        return item !== "";
+                    })
+
+                    // console.log("after end", gridInputs);
+                    // console.log(gridInputs)
+                    // console.log([ "", "", "", "", "", "", "", "", "" ])
+                    // console.log (gridInputs === [ "", "", "", "", "", "", "", "", "" ])
+                    // if (gridInputs === [ "", "", "", "", "", "", "", "", "" ]) {
+                    //      console.log("finally")
+                    // }
+
+                    if (test.length !== 0) {
                         let validMoves = generateValidMoves(gridInputs);
                         let index = Math.floor(Math.random() * validMoves.length);
                         let move = validMoves[index];
@@ -240,8 +247,7 @@
                     boxes.forEach((box) => {
                         box.textContent = "";
                     })
-                }, 0);
-
+                }, 750);
 
                 return gameOver;
             }
@@ -271,6 +277,8 @@
                 })
             }, 750);
         })
+
+
 })();
 
 
