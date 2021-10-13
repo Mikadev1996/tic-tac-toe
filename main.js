@@ -28,7 +28,7 @@
     // PVAI
 
     AI.addEventListener("click", () => {
-        console.log("AI Opened")
+        gridInputs = ["", "", "", "", "", "", "", "", ""];
         AIMenu.style.opacity = "1";
         AIMenu.style.pointerEvents = "all";
     })
@@ -63,7 +63,6 @@
         game_p1.textContent = player1.name;
         game_p2.textContent = player2.name;
 
-        console.log("test")
 
         const boxes = Array.from(document.querySelectorAll(".box"));
         boxes.forEach((box) => {
@@ -133,7 +132,6 @@
     // PVP
 
     pvp.addEventListener("click", () => {
-        console.log("PVP Opened");
         pvpMenu.style.opacity = "1";
         pvpMenu.style.pointerEvents = "all";
     })
@@ -172,27 +170,20 @@
 
     //
 
-
     let gridInputs = [
         "","","",
         "","","",
         "","",""
     ];
 
-
-
-
     let pvpGame = (player) => {
         let state = true;
 
-
         let playerShapeInput = (box) => {
-            console.log(box.target)
             let draw = gridInputs.filter((item) => {
                 return item === "";
             })
-
-
+            console.log("test in playerShapeInput")
             if (box.target.textContent !== "O" && box.target.textContent !== "X" && draw.length > 1) {
                 box.target.textContent = state ? "X" : "O";
                 state = (box.target.textContent !== "X");
@@ -200,7 +191,6 @@
                 gridInputs[(box.target.classList[1] - 1)] = box.target.textContent;
                 isGameOver(player, gridInputs, box.target.textContent);
             }
-
         }
 
         const boxes = Array.from(document.querySelectorAll(".box"));
@@ -208,7 +198,11 @@
             box.addEventListener("click", playerShapeInput);
         })
 
-            menuButton.removeEventListener("click", playerShapeInput);
+            menuButton.addEventListener("click", () => {
+                boxes.forEach((box) => {
+                    box.removeEventListener("click", playerShapeInput);
+                })
+            })
     }
 
     const winConditions = [
@@ -222,10 +216,7 @@
         [0, 4, 8]
     ];
 
-    // let gameOver = false;
-
     const isGameOver = (player, arr, shape) => {
-
         for (const set of winConditions) {
             let gameOver = (arr[set[0]] === shape && arr[set[1]] === shape && arr[set[2]] === shape)
             if (gameOver) {
@@ -253,8 +244,6 @@
             }
         }
 
-        // winConditions.forEach(forEach);
-
         return false;
     }
 
@@ -279,15 +268,4 @@
                 })
             }, 750);
         })
-
-
 })();
-
-
-
-
-
-
-
-
-
