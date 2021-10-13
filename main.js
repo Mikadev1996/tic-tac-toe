@@ -183,25 +183,32 @@
 
 
     let pvpGame = (player) => {
+        let state = true;
+
 
         let playerShapeInput = (box) => {
-            console.log(box);
-            // if (box.textContent !== "O" && box.textContent !== "X" && draw.length > 1) {
-            //     box.textContent = "X";
-            //     gridInputs[(box.classList[1] - 1)] = box.textContent;
-            //
-            //     gridInputs[(box.classList[1] - 1)] = box.textContent;
-            //     isGameOver(window.player, gridInputs, box.textContent);
-            // }
+            console.log(box.target)
+            let draw = gridInputs.filter((item) => {
+                return item === "";
+            })
+
+
+            if (box.target.textContent !== "O" && box.target.textContent !== "X" && draw.length > 1) {
+                box.target.textContent = state ? "X" : "O";
+                state = (box.target.textContent !== "X");
+
+                gridInputs[(box.target.classList[1] - 1)] = box.target.textContent;
+                isGameOver(player, gridInputs, box.target.textContent);
+            }
+
         }
 
-        window.player = player;
-        window.gamestate = true;
         const boxes = Array.from(document.querySelectorAll(".box"));
-        boxes.forEach((box) =>{
-            box.removeEventListener("click", playerShapeInput, true);
-            box.addEventListener("click",playerShapeInput, true);
+        boxes.forEach((box) => {
+            box.addEventListener("click", playerShapeInput);
         })
+
+            menuButton.removeEventListener("click", playerShapeInput);
     }
 
     const winConditions = [
@@ -235,7 +242,7 @@
                     "","","",
                     "","",""
                 ];
-                console.log("in function", gridInputs)
+
                 setTimeout(() => {
                     boxes.forEach((box) => {
                         box.textContent = "";
