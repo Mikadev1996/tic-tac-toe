@@ -34,7 +34,6 @@ input {
 .inputs {
     background: white;
     border-radius: 10px;
-    margin: 5px;
     padding: 5px;
 }
 
@@ -45,14 +44,12 @@ input {
 }
 
 #start {
-    left: -25px;
     position: fixed;
     transition: all 0.5s ease-in-out;
     height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 }
 
@@ -67,7 +64,6 @@ input {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 25px;
     text-align: center;
     width: 100vw;
     height: 150px;

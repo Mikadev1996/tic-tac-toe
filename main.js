@@ -63,45 +63,35 @@
         game_p1.textContent = player1.name;
         game_p2.textContent = player2.name;
 
+        console.log("test")
 
         const boxes = Array.from(document.querySelectorAll(".box"));
         boxes.forEach((box) => {
-
             function playAI() {
                 let draw = gridInputs.filter((item) => {
                     return item === "";
                 })
 
                 if (box.textContent !== "O" && box.textContent !== "X" && draw.length > 1) {
-
-                    function generateValidMoves(gridInputs) {
-                        let validMoves = [];
-                        gridInputs.forEach((item, index) => {
-                            if (item === "") {
-                                validMoves.push(index);
-
-                            }
-                        })
-                        return validMoves;
-                    }
-
                     box.textContent = "X";
                     gridInputs[(box.classList[1] - 1)] = box.textContent;
-                    isGameOver([player1, player2], gridInputs, box.textContent);
+                    let gameOver = isGameOver([player1, player2], gridInputs, box.textContent);
 
                     let test = gridInputs.filter(item => {
                         return item !== "";
                     })
 
-                    // console.log("after end", gridInputs);
-                    // console.log(gridInputs)
-                    // console.log([ "", "", "", "", "", "", "", "", "" ])
-                    // console.log (gridInputs === [ "", "", "", "", "", "", "", "", "" ])
-                    // if (gridInputs === [ "", "", "", "", "", "", "", "", "" ]) {
-                    //      console.log("finally")
-                    // }
-
                     if (test.length !== 0) {
+
+                        function generateValidMoves(gridInputs) {
+                            let validMoves = [];
+                            gridInputs.forEach((item, index) => {
+                                if (item === "") {
+                                    validMoves.push(index);
+                                }
+                            })
+                            return validMoves;
+                        }
                         let validMoves = generateValidMoves(gridInputs);
                         let index = Math.floor(Math.random() * validMoves.length);
                         let move = validMoves[index];
@@ -110,7 +100,6 @@
                             boxes[move].textContent = "O"
 
                             if (draw.length <= 3) {
-                                console.log(draw.length," Draw, endgame")
                                 gridInputs = [
                                     "","","",
                                     "","","",
@@ -125,8 +114,8 @@
                     }
                 }
             }
-
             box.addEventListener("click", playAI);
+
             menuButton.addEventListener("click", () => {
                 boxes.forEach(box => {
                     box.removeEventListener("click", playAI);
@@ -139,7 +128,7 @@
         startPVAI();
     });
 
-    // ----------------------------------------------------------------------------------------------------------------
+    //
 
     // PVP
 
@@ -190,19 +179,22 @@
         "","",""
     ];
 
-    let playerShapeInput = (event) => {
-        let box = event.target || event.srcElement;
-        if (box.textContent !== "X" && box.textContent !== "O") {
-            box.textContent = window.gamestate ? "X" : "O";
-            window.gamestate = box.textContent !== "X";
 
-            gridInputs[(box.classList[1] - 1)] = box.textContent;
-            isGameOver(window.player, gridInputs, box.textContent);
-        }
-    }
 
 
     let pvpGame = (player) => {
+
+        let playerShapeInput = (box) => {
+            console.log(box);
+            // if (box.textContent !== "O" && box.textContent !== "X" && draw.length > 1) {
+            //     box.textContent = "X";
+            //     gridInputs[(box.classList[1] - 1)] = box.textContent;
+            //
+            //     gridInputs[(box.classList[1] - 1)] = box.textContent;
+            //     isGameOver(window.player, gridInputs, box.textContent);
+            // }
+        }
+
         window.player = player;
         window.gamestate = true;
         const boxes = Array.from(document.querySelectorAll(".box"));
@@ -226,7 +218,8 @@
     // let gameOver = false;
 
     const isGameOver = (player, arr, shape) => {
-        winConditions.forEach((set) => {
+
+        for (const set of winConditions) {
             let gameOver = (arr[set[0]] === shape && arr[set[1]] === shape && arr[set[2]] === shape)
             if (gameOver) {
                 if (shape === "X") {
@@ -242,7 +235,7 @@
                     "","","",
                     "","",""
                 ];
-
+                console.log("in function", gridInputs)
                 setTimeout(() => {
                     boxes.forEach((box) => {
                         box.textContent = "";
@@ -251,7 +244,9 @@
 
                 return gameOver;
             }
-        })
+        }
+
+        // winConditions.forEach(forEach);
 
         return false;
     }
