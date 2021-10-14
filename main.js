@@ -255,7 +255,6 @@
             gameMenu.style.pointerEvents = "none";
             AIMenu.style.opacity = "0";
             AIMenu.style.pointerEvents = "none";
-
             gridInputs = [
                 "","","",
                 "","","",
