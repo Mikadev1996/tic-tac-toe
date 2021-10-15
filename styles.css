@@ -237,8 +237,13 @@ footer {
 
 a {
     text-decoration: none;
+    color:#B5EAD7;
 }
 
 a:visited {
-    color: inherit;
+    color: #B5EAD7;
+}
+
+a:hover {
+    color:rebeccapurple;
 }
