@@ -23,6 +23,7 @@
     const confirmButton2 = document.getElementById("confirm");
 
     function resetGameBoard()  {
+        console.log("reset")
         boxes.forEach((box) => {
             box.style.pointerEvents = "none";
         })
@@ -115,16 +116,16 @@
                         if (boxes[move] !== "X") {
                             gridInputs[move] = "O";
                             boxes[move].textContent = "O"
-
-                            if (drawStatus.length <= 3) {
+                        isGameOver([player1, player2], gridInputs, "O");
+                            if (drawStatus.length <= 3 && winState.textContent !== "O Wins") {
                                 winState.textContent = "Draw";
                                 winState.style.opacity = "1";
                                 setTimeout(() => {
                                     winState.style.opacity = "0"
-                                }, 1500)
+                                }, 950)
                                 resetGameBoard();
                             }
-                            isGameOver([player1, player2], gridInputs, "O");
+
                         }
                     }
                 }
@@ -213,11 +214,6 @@
 
 
                 if (drawStatus.length <= 3) {
-                    winState.textContent = "Draw";
-                    winState.style.opacity = "1";
-                    setTimeout(() => {
-                        winState.style.opacity = "0"
-                    }, 1500)
                     resetGameBoard();
                 }
             }
@@ -261,6 +257,7 @@
 
                 } else {
                     player[1].score += 1;
+                    console.log("2")
                     scoreP2.textContent = `Score: ${player[1].score}`;
                     winState.textContent = "O Wins";
                     winState.style.opacity = "1";
