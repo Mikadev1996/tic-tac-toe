@@ -3,6 +3,7 @@
     const startMenu = document.querySelector("#start");
     const pvpMenu = document.querySelector("#dropdown-1");
     const AIMenu = document.querySelector("#dropdown-2");
+    const winState = document.getElementById("win-state-header");
 
     const cancelButton = document.querySelector(".cancel");
     const confirmButton = document.querySelector(".confirm");
@@ -88,17 +89,16 @@
                     return item === "";
                 })
 
-                let isGridEmpty = gridInputs.filter(item => {
-                    return item !== "";
-                })
 
                 if (box.textContent !== "O" && box.textContent !== "X" && drawStatus.length > 1) {
                     box.textContent = "X";
                     gridInputs[(box.classList[1] - 1)] = box.textContent;
                     let gameOver = isGameOver([player1, player2], gridInputs, box.textContent);
+                    let isGridEmpty = gridInputs.filter(item => {
+                        return item !== "";
+                    })
 
                     if (isGridEmpty.length !== 0) {
-
                         function generateValidMoves(gridInputs) {
                             let validMoves = [];
                             gridInputs.forEach((item, index) => {
@@ -117,8 +117,12 @@
                             boxes[move].textContent = "O"
 
                             if (drawStatus.length <= 3) {
+                                winState.textContent = "Draw";
+                                winState.style.opacity = "1";
+                                setTimeout(() => {
+                                    winState.style.opacity = "0"
+                                }, 1500)
                                 resetGameBoard();
-                                //stop user input (after draw)
                             }
                             isGameOver([player1, player2], gridInputs, "O");
                         }
@@ -209,6 +213,11 @@
 
 
                 if (drawStatus.length <= 3) {
+                    winState.textContent = "Draw";
+                    winState.style.opacity = "1";
+                    setTimeout(() => {
+                        winState.style.opacity = "0"
+                    }, 1500)
                     resetGameBoard();
                 }
             }
@@ -244,9 +253,20 @@
                 if (shape === "X") {
                     player[0].score += 1;
                     scoreP1.textContent = `Score: ${player[0].score}`;
+                    winState.textContent = "X Wins";
+                    winState.style.opacity = "1";
+                        setTimeout(() => {
+                            winState.style.opacity = "0"
+                        }, 1500)
+
                 } else {
                     player[1].score += 1;
                     scoreP2.textContent = `Score: ${player[1].score}`;
+                    winState.textContent = "O Wins";
+                    winState.style.opacity = "1";
+                    setTimeout(() => {
+                        winState.style.opacity = "0"
+                    }, 950)
                 }
 
                 gridInputs = [

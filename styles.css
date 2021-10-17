@@ -179,6 +179,18 @@ button {
     width: 100vw;
 }
 
+#win-state {
+    transition: all 0.4s ease-in;
+    position: fixed;
+    width: 100vw;
+    text-align: center;
+    top: 20vh;;
+}
+
+#win-state-header {
+    transition: all 0.4s ease-in;
+}
+
 .box {
     display: flex;
     align-items: center;
