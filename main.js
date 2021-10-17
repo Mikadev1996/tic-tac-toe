@@ -23,7 +23,6 @@
     const confirmButton2 = document.getElementById("confirm");
 
     function resetGameBoard()  {
-        console.log("reset")
         boxes.forEach((box) => {
             box.style.pointerEvents = "none";
         })
@@ -119,7 +118,6 @@
                             gridInputs[move] = "O";
                             boxes[move].textContent = "O"
                             isGameOver([player1, player2], gridInputs, "O");
-                            console.log(drawStatus.length, winState.textContent);
 
                             if (drawStatus.length <= 3 && winState.textContent !== "O Wins") {
                                 winState.textContent = "Draw";
@@ -267,7 +265,6 @@
 
                 } else {
                     player[1].score += 1;
-                    console.log("2")
                     scoreP2.textContent = `Score: ${player[1].score}`;
                     winState.textContent = "O Wins";
                     winState.style.opacity = "1";
