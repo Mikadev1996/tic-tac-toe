@@ -210,11 +210,16 @@
                 state = (box.target.textContent !== "X");
 
                 gridInputs[(box.target.classList[1] - 1)] = box.target.textContent;
-                isGameOver(player, gridInputs, box.target.textContent);
+                let gameOver = isGameOver(player, gridInputs, box.target.textContent);
 
-
-                if (drawStatus.length <= 3) {
+                if (drawStatus.length <= 3 && !gameOver) {
+                    winState.textContent = "Draw";
+                    winState.style.opacity = "1";
+                    setTimeout(() => {
+                        winState.style.opacity = "0"
+                    }, 950)
                     resetGameBoard();
+
                 }
             }
         }
