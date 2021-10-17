@@ -21,6 +21,23 @@
     const cancelButton2 = document.getElementById("cancel");
     const confirmButton2 = document.getElementById("confirm");
 
+    function resetGameBoard()  {
+        boxes.forEach((box) => {
+            box.style.pointerEvents = "none";
+        })
+        gridInputs = [
+            "","","",
+            "","","",
+            "","",""
+        ];
+        setTimeout(() => {
+            boxes.forEach((box) => {
+                box.textContent = "";
+                box.style.pointerEvents = "all";
+            })
+        }, 750);
+    }
+
     const Player = (name, shape, score) => {
         return {name, shape, score}
     }
@@ -67,18 +84,18 @@
         const boxes = Array.from(document.querySelectorAll(".box"));
         boxes.forEach((box) => {
             function playAI() {
-                let draw = gridInputs.filter((item) => {
+                let drawStatus = gridInputs.filter((item) => {
                     return item === "";
                 })
 
-                if (box.textContent !== "O" && box.textContent !== "X" && draw.length > 1) {
+                let isGridEmpty = gridInputs.filter(item => {
+                    return item !== "";
+                })
+
+                if (box.textContent !== "O" && box.textContent !== "X" && drawStatus.length > 1) {
                     box.textContent = "X";
                     gridInputs[(box.classList[1] - 1)] = box.textContent;
                     let gameOver = isGameOver([player1, player2], gridInputs, box.textContent);
-
-                    let isGridEmpty = gridInputs.filter(item => {
-                        return item !== "";
-                    })
 
                     if (isGridEmpty.length !== 0) {
 
@@ -99,18 +116,8 @@
                             gridInputs[move] = "O";
                             boxes[move].textContent = "O"
 
-                            if (draw.length <= 3) {
-                                gridInputs = [
-                                    "","","",
-                                    "","","",
-                                    "","",""
-                                ];
-                                setTimeout(() => {
-                                    boxes.forEach((box) => {
-                                        box.textContent = "";
-                                    })
-                                }, 750);
-
+                            if (drawStatus.length <= 3) {
+                                resetGameBoard();
                                 //stop user input (after draw)
                             }
                             isGameOver([player1, player2], gridInputs, "O");
@@ -185,31 +192,25 @@
         let state = true;
 
         let playerShapeInput = (box) => {
-            let draw = gridInputs.filter((item) => {
+            let drawStatus = gridInputs.filter((item) => {
                 return item === "";
             })
-            console.log("test in playerShapeInput")
-            if (box.target.textContent !== "O" && box.target.textContent !== "X" && draw.length > 1) {
+
+            let isGridEmpty = gridInputs.filter((item) => {
+                return item !== "";
+            })
+
+            if (box.target.textContent !== "O" && box.target.textContent !== "X" && drawStatus.length > 1) {
                 box.target.textContent = state ? "X" : "O";
                 state = (box.target.textContent !== "X");
 
                 gridInputs[(box.target.classList[1] - 1)] = box.target.textContent;
                 isGameOver(player, gridInputs, box.target.textContent);
-            }
-            else {
-                gridInputs = [
-                    "","","",
-                    "","","",
-                    "","",""
-                ];
-                setTimeout(() => {
-                    boxes.forEach((box) => {
-                        box.textContent = "";
-                    })
-                }, 750);
 
-                //stop user input (after draw)
 
+                if (drawStatus.length <= 3) {
+                    resetGameBoard();
+                }
             }
         }
 
