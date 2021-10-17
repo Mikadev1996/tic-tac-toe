@@ -100,6 +100,7 @@
                     })
 
                     if (isGridEmpty.length !== 0) {
+
                         function generateValidMoves(gridInputs) {
                             let validMoves = [];
                             gridInputs.forEach((item, index) => {
@@ -113,10 +114,13 @@
                         let validMoves = generateValidMoves(gridInputs);
                         let index = Math.floor(Math.random() * validMoves.length);
                         let move = validMoves[index];
+
                         if (boxes[move] !== "X") {
                             gridInputs[move] = "O";
                             boxes[move].textContent = "O"
-                        isGameOver([player1, player2], gridInputs, "O");
+                            isGameOver([player1, player2], gridInputs, "O");
+                            console.log(drawStatus.length, winState.textContent);
+
                             if (drawStatus.length <= 3 && winState.textContent !== "O Wins") {
                                 winState.textContent = "Draw";
                                 winState.style.opacity = "1";
@@ -131,6 +135,7 @@
                 }
             }
             box.addEventListener("click", playAI);
+            box.style.pointerEvents = "all";
 
             menuButton.addEventListener("click", () => {
                 boxes.forEach(box => {
@@ -211,7 +216,6 @@
 
                 gridInputs[(box.target.classList[1] - 1)] = box.target.textContent;
                 let gameOver = isGameOver(player, gridInputs, box.target.textContent);
-
                 if (drawStatus.length <= 3 && !gameOver) {
                     winState.textContent = "Draw";
                     winState.style.opacity = "1";
@@ -226,6 +230,7 @@
 
         const boxes = Array.from(document.querySelectorAll(".box"));
         boxes.forEach((box) => {
+            box.style.pointerEvents = "all";
             box.addEventListener("click", playerShapeInput);
         })
 
@@ -271,18 +276,7 @@
                     }, 950)
                 }
 
-                gridInputs = [
-                    "","","",
-                    "","","",
-                    "","",""
-                ];
-
-                setTimeout(() => {
-                    boxes.forEach((box) => {
-                        box.textContent = "";
-                    })
-                }, 750);
-
+                resetGameBoard();
                 return gameOver;
             }
         }
@@ -307,6 +301,7 @@
         setTimeout(() => {
             boxes.forEach((box) => {
                 box.textContent = "";
+                box.style.pointerEvents = "none";
             })
         }, 750);
     })
